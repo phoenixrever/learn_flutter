@@ -36,9 +36,15 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
-  flutter_test:
+  flutter_driver:
     sdk: flutter
+  test: any
+  flutter_launcher_icons: ^0.9.1
 
+flutter_icons:
+  image_path: "E:/fluttercode/learn_flutter/launcher/logo.jpg"
+  android: true
+  ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

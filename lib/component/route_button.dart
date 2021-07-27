@@ -124,6 +124,13 @@ class RouteButton extends StatelessWidget {
             name: "localizations",
             to: "localizations",
           ),
+          ComponentRoute(
+            begin: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 0.3568627450980392),
+            end: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 1.0),
+            borderColor: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256),Random().nextInt(256), 1.0),
+            name: "test",
+            to: "test",
+          ),
 
         ],
       ),

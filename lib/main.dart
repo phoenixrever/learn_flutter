@@ -9,6 +9,7 @@ import 'package:learn_flutter/component/rxdart/rxdart_demo.dart';
 import 'package:learn_flutter/component/state_provider/stream/stream_demo.dart';
 import 'package:learn_flutter/component/stepper_demo.dart';
 
+import 'component/Test/test_demo.dart';
 import 'component/animation/animation_demo.dart';
 import 'component/card_demo.dart';
 import 'component/fom_demo.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         "http": (context) =>HttpDemo(),
         "animation": (context) =>AnimationDemo(),
         "localizations": (context) =>LocalizationsDemo(),
+        "test": (context) => TestDemo()
       },
       ///取消debug图标
       theme: ThemeData(

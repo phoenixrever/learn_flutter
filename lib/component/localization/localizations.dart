@@ -14,8 +14,8 @@ class LocalizationsDemo extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${locale.languageCode}'),
-            Text('${locale.toString()}'),
+            Text('${locale.languageCode}'),//ja
+            Text('${locale.toString()}'),//ja
             Text(AppLocalizations.of(context)!.helloWorld),
           ],
         ),
