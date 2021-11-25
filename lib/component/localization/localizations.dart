@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LocalizationsDemo extends StatelessWidget {
   const LocalizationsDemo({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class LocalizationsDemo extends StatelessWidget {
           children: [
             Text('${locale.languageCode}'),//ja
             Text('${locale.toString()}'),//ja
-            Text(AppLocalizations.of(context)!.helloWorld),
+            // Text(AppLocalizations.of(context)!.helloWorld),
           ],
         ),
       ),

@@ -1,4 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:learn_flutter/component/animation/counter_puigin.dart';
+import 'package:learn_flutter/component/animation/multi_animation.dart';
+import 'package:learn_flutter/component/animation/tween_transform.dart';
+
+import 'animated_counter.dart';
+import 'animated_widget.dart';
+import 'circle_animation.dart';
+import 'controller_dmo.dart';
+import 'custom_animation.dart';
+import 'custom_painter.dart';
+import 'flip_counter.dart';
+import 'heart_animation.dart';
+import 'hero_animation.dart';
 
 class AnimationDemo extends StatefulWidget {
   const AnimationDemo({Key? key}) : super(key: key);
@@ -8,187 +24,8 @@ class AnimationDemo extends StatefulWidget {
 }
 
 //with混合
-class _AnimationDemoState extends State<AnimationDemo>
-    with TickerProviderStateMixin {
+class _AnimationDemoState extends State<AnimationDemo> {
   int _selectedIndex = 0;
-  late AnimationController _animationController;
-  late Animation _animation;
-  late Animation _animationColor;
-  late CurvedAnimation _curvedAnimation;
-  late Curve _curve;
-  String label = 'bounceOut';
-  List<Map> curves = [
-    {
-      "linear": Curves.linear,
-    },
-    {
-      "bounceOut": Curves.bounceOut,
-    },
-    {
-      "bounceIn": Curves.bounceIn,
-    },
-    {
-      "bounceInOut": Curves.bounceInOut,
-    },
-    {
-      "decelerate": Curves.decelerate,
-    },
-    {
-      "easeInOutCirc": Curves.easeInOutCirc,
-    },
-    {
-      "ease": Curves.ease,
-    },
-    {
-      "easeIn": Curves.easeIn,
-    },
-    {
-      "easeInOut": Curves.easeInOut,
-    },
-    {
-      "easeInBack": Curves.easeInBack,
-    },
-    {
-      "easeInCirc": Curves.easeInCirc,
-    },
-    {
-      "easeInCubic": Curves.easeInCubic,
-    },
-    {
-      "easeInOutCirc": Curves.easeInOutCirc,
-    },
-    {
-      "easeInExpo": Curves.easeInExpo,
-    },
-    {
-      "easeInOutBack": Curves.easeInOutBack,
-    },
-    {
-      "easeInOutCubic": Curves.easeInOutCubic,
-    },
-    {
-      "easeInOutExpo": Curves.easeInOutExpo,
-    },
-    {
-      "easeInOutQuad": Curves.easeInOutQuad,
-    },
-    {
-      "easeOutQuart": Curves.easeOutQuart,
-    },
-    {
-      "easeInOutQuint": Curves.easeInOutQuint,
-    },
-    {
-      "easeOutSine": Curves.easeOutSine,
-    },
-    {
-      "easeInQuad": Curves.easeInQuad,
-    },
-    {
-      "easeInQuart": Curves.easeInQuart,
-    },
-    {
-      "easeInQuint": Curves.easeInQuint,
-    },
-    {
-      "slowMiddle": Curves.slowMiddle,
-    },
-    {
-      "easeInQuint": Curves.easeInQuint,
-    },
-    {
-      "linearToEaseOut": Curves.linearToEaseOut,
-    },
-    {
-      "fastLinearToSlowEaseIn": Curves.fastLinearToSlowEaseIn,
-    },
-    {
-      "elasticOut": Curves.elasticOut,
-    },
-    {
-      "elasticIn": Curves.elasticIn,
-    },
-    {
-      "easeOutExpo": Curves.easeOutExpo,
-    },
-    {
-      "decelerate": Curves.decelerate,
-    },
-    {
-      "fastOutSlowIn": Curves.fastOutSlowIn,
-    },
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    initAnimate();
-  }
-
-  void initAnimate() {
-    _animationController = AnimationController(
-        //初始值
-        // value: 25,
-        // lowerBound: 25.0,
-        // upperBound: 100.0,
-        duration: Duration(milliseconds: 3000),
-
-        ///防止不在视野范围内的(别的页面)消耗不必要的资源
-        vsync: this);
-
-    _curve = Curves.bounceOut;
-    _curvedAnimation =
-        CurvedAnimation(parent: _animationController, curve: _curve);
-
-    ///注册动画对象
-    _animation = Tween(
-      begin: 32.0,
-      end: 100.0,
-    ).animate(_curvedAnimation);
-    _animationColor = ColorTween(
-      begin: Colors.red,
-      end: Colors.red[900],
-    ).animate(_curvedAnimation);
-
-    ///继承AnimatedWidget 会自动listener
-    // _animationController.addListener(() {
-    //   // print("$_animationController.value");
-    //
-    //   //通知ui value改变了
-    //   setState(() {});
-    // });
-
-    ///动画运行状态
-    _animationController.addStatusListener((AnimationStatus status) {
-      print("$status");
-    });
-
-    ///开始播放动画
-    // _animationController.forward();
-  }
-
-  void changeAnimate(Curve curve) {
-    _curve = curve;
-    _curvedAnimation =
-        CurvedAnimation(parent: _animationController, curve: _curve);
-
-    //注册动画对象
-    _animation = Tween(
-      begin: 32.0,
-      end: 100.0,
-    ).animate(_curvedAnimation);
-    _animationColor = ColorTween(
-      begin: Colors.red,
-      end: Colors.red[900],
-    ).animate(_curvedAnimation);
-  }
-
-  ///销毁控制器
-  @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,27 +36,76 @@ class _AnimationDemoState extends State<AnimationDemo>
       ),
       body: Row(
         children: [
-          NavigationRail(
-            selectedIndex: _selectedIndex,
-            labelType: NavigationRailLabelType.all,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            destinations: [
-              NavigationRailDestination(
-                icon: Icon(Icons.favorite_border),
-                selectedIcon: Icon(Icons.favorite),
-                label: Text('animation'),
+          LayoutBuilder(builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: NavigationRail(
+                    selectedIndex: _selectedIndex,
+                    labelType: NavigationRailLabelType.all,
+                    onDestinationSelected: (int index) {
+                      setState(() {
+                        _selectedIndex = index;
+                      });
+                    },
+                    destinations: [
+                      NavigationRailDestination(
+                        icon: Icon(Icons.favorite_border),
+                        selectedIcon: Icon(Icons.favorite),
+                        label: Text('animation'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.bookmark_border),
+                        selectedIcon: Icon(Icons.book),
+                        label: Text('hero'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('circle'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('widget'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('transform'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('counter'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('contoller'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('multi'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('custom'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.circle_notifications_outlined),
+                        selectedIcon: Icon(Icons.circle_notifications),
+                        label: Text('painer'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              NavigationRailDestination(
-                icon: Icon(Icons.bookmark_border),
-                selectedIcon: Icon(Icons.book),
-                label: Text('paginated'),
-              ),
-            ],
-          ),
+            );
+          }),
           VerticalDivider(
             width: 1,
             color: Colors.grey,
@@ -228,86 +114,20 @@ class _AnimationDemoState extends State<AnimationDemo>
               child: IndexedStack(
             index: _selectedIndex,
             children: [
-              SingleChildScrollView(
-                child: Center(
-                  child: Column(
-                    children: [
-                      // ActionChip(
-                      //     // label: Text("${_animationController.value}"),
-                      //     label: Text("${_animation.value}"),
-                      //     onPressed: () {
-                      //       _animationController.forward();
-                      //     }),
-                      Row(
-
-                        children: [
-                          SizedBox(width: 100, child: Text("$label")),
-                          SizedBox(
-                            height: 150,
-                            child: Center(
-                              child: AnimatedHeart(
-                                animations: [_animation, _animationColor],
-                                controller: _animationController,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Wrap(
-                        spacing: 5,
-                        children: [
-                          ...List.generate(
-                              curves.length,
-                              (index) => ActionChip(
-                                  label: Text(curves[index].keys.elementAt(0)),
-                                  onPressed: () {
-                                    setState(() {
-                                      label = curves[index].keys.elementAt(0);
-                                      changeAnimate(
-                                          curves[index].values.elementAt(0));
-                                    });
-                                  }))
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Text("2")
+              HeartAnimation(),
+              HeroAnimationDemo(),
+              CircleAnimationDemo(),
+              AnimatedWidgetDemo(),
+              TweenTransform(),
+              AnimatedCounter(),
+              ControllerDemo(),
+              MultiAnimation(),
+              CustomAnimation(),
+              CustomPainterDemo(),
             ],
           ))
         ],
       ),
     );
-  }
-}
-
-class AnimatedHeart extends AnimatedWidget {
-  final List animations;
-  final AnimationController controller;
-
-  AnimatedHeart({required this.animations, required this.controller})
-      : super(listenable: controller);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        icon: Icon(
-          Icons.favorite,
-          color: animations[1].value,
-        ),
-        iconSize: animations[0].value,
-        onPressed: () {
-          switch (controller.status) {
-            case AnimationStatus.completed:
-              controller.reverse();
-              break;
-            default:
-              controller.forward();
-          }
-        });
   }
 }

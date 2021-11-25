@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/component/title_divider.dart';
 
 class CommonButton extends StatelessWidget {
   const CommonButton({
@@ -130,6 +131,19 @@ class CommonButton extends StatelessWidget {
                 onPressed: () {}, child: Text("ButtonBar")),
           ],
         ),
+        TitleDivider(title: "老按钮受ButtonTheme影响"),
+        RaisedButton(onPressed: (){},child: Text("老按钮"),),
+        TitleDivider(title: "特殊button"),
+        Row(
+          children: [
+            Text("CloseButton"),
+            CloseButton(onPressed: (){},),
+            Spacer(),
+            Text("BackButton"),
+            BackButton(onPressed: (){},)
+          ],
+        ),
+
       ],
     );
   }

@@ -23,11 +23,11 @@ class _BottomBarState extends State<BottomBar> {
       },
       selectedFontSize:12.0 ,
       unselectedFontSize: 12.0,
-      unselectedItemColor: Colors.grey.withOpacity(0.8),
+      // unselectedItemColor: Colors.grey.withOpacity(0.8),
       ///超出4个需要设置
       type: BottomNavigationBarType.fixed,
       ///激活颜色
-      fixedColor: Colors.deepPurple,
+      // fixedColor: Colors.deepPurple,
       currentIndex: widget.currentIndex,
       items: [
         BottomNavigationBarItem(
@@ -36,7 +36,7 @@ class _BottomBarState extends State<BottomBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.message),
-          label: "grid",
+          label: "scroll",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.ac_unit_outlined),
@@ -44,7 +44,11 @@ class _BottomBarState extends State<BottomBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.ac_unit_outlined),
-          label: "explore",
+          label: "layout",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.ac_unit_outlined),
+          label: "other",
         ),
       ],
     );

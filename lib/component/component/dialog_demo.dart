@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/component/component/sateful_dialog.dart';
 
 enum Option { A, B, C }
 
 class DialogDemo extends StatefulWidget {
-  const DialogDemo({
+   DialogDemo({
     Key? key,
   }) : super(key: key);
 
@@ -17,62 +18,69 @@ class _DialogDemoState extends State<DialogDemo> {
   final bottomSheetScaffoldKey = GlobalKey<ScaffoldState>();
   String _modalBottomSheetValue = "";
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: bottomSheetScaffoldKey,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("dialog return value: $_dialogOption"),
-          ElevatedButton(
-              onPressed: () {
-                openDialog(context);
-              },
-              child: Text("simple dialog")),
-          SizedBox(
-            height: 50,
-          ),
-          Text("dialog return value: $_alertdialogOption"),
-          ElevatedButton(
-              onPressed: () {
-                openAlertDialog(context);
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor),
-              child: Text("alert dialog")),
-          SizedBox(
-            height: 50,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                openBottomSheet(context);
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor),
-              child: Text("Scaffold bottom sheet")),
-          SizedBox(
-            height: 50,
-          ),
-          Text("bottom modal sheet value: $_modalBottomSheetValue"),
-          ElevatedButton(
-              onPressed: () {
-                openModalBottomSheet(context);
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor),
-              child: Text("bottom modal sheet")),
-          SizedBox(
-            height: 50,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                openSnackBar(context);
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor),
-              child: Text("snack bar")),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("dialog return value: $_dialogOption"),
+            ElevatedButton(
+                onPressed: () {
+                  openDialog(context);
+                },
+                child: Text("simple dialog")),
+            SizedBox(
+              height: 20,
+            ),
+            Text("dialog return value: $_alertdialogOption"),
+            ElevatedButton(
+                onPressed: () {
+                  openAlertDialog(context);
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
+                child: Text("alert dialog")),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  openBottomSheet(context);
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
+                child: Text("Scaffold bottom sheet")),
+            SizedBox(
+              height: 20,
+            ),
+            Text("bottom modal sheet value: $_modalBottomSheetValue"),
+            ElevatedButton(
+                onPressed: () {
+                  openModalBottomSheet(context);
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
+                child: Text("bottom modal sheet")),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  openSnackBar(context);
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
+                child: Text("snack bar")),
+            SizedBox(
+              height: 20,
+            ),
+            StatefulDialog()
+          ],
+        ),
       ),
     );
   }

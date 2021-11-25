@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:learn_flutter/Component/title_divider.dart';
+import 'package:learn_flutter/component/component/route_pass_value.dart';
 import 'dart:async';
 import '../button/checkbox_radio.dart';
 import '../button/common_button.dart';
@@ -69,6 +70,11 @@ class _ComponentDemoState extends State<ComponentDemo> {
                 selectedIcon: Icon(Icons.settings_applications),
                 label: Text('others'),
               ),
+              NavigationRailDestination(
+                icon: Icon(Icons.settings),
+                selectedIcon: Icon(Icons.settings_applications),
+                label: Text('route'),
+              ),
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
@@ -87,6 +93,7 @@ class _ComponentDemoState extends State<ComponentDemo> {
                     key: childKey,
                   ),
                   Others(),
+                  RoutePassValue()
                 ],
               ),
             ),

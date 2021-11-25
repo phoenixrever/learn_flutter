@@ -1,3 +1,4 @@
+
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,9 @@ import 'package:learn_flutter/component/route_button.dart';
 import 'bottom_bar.dart';
 import 'custom_icon.dart';
 import 'drawer_demo.dart';
-import 'grid_view_demo.dart';
+import 'layout/Layout_route.dart';
+import 'other.dart';
+import 'scroll/scroll_route_demo.dart';
 
 class TabBarDemo extends StatefulWidget {
   const TabBarDemo({
@@ -23,12 +26,14 @@ class TabBarDemo extends StatefulWidget {
 
 class _TabBarDemoState extends State<TabBarDemo> {
   int _currentIndex = 0;
-
+  bool isShowAppbarBottom=true;
   _changeIndex(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
               onPressed: () {},
             ),
           ],
-          bottom: TabBar(
+          bottom: isShowAppbarBottom?TabBar(
             unselectedLabelColor: Colors.grey,
 
             ///tabbar 下方横线 label为文字宽度 tab为所占空间宽度
@@ -84,15 +89,16 @@ class _TabBarDemoState extends State<TabBarDemo> {
                 child: Text("tab4"),
               ),
             ],
-          ),
+          ):null,
         ),
         body: IndexedStack(
           index: _currentIndex,
           children: [
             Tab1View(),
-            GridViewDemo(),
+            ScrollRouteDemo(),
             RouteButton(),
-            Text("page4")
+            LayoutRoute(),
+            OtherDemo(),
           ],
         ),
         drawer: Container(

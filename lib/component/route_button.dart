@@ -19,14 +19,6 @@ class RouteButton extends StatelessWidget {
             mainAxisExtent: 40),
         children: [
           ComponentRoute(
-            begin: Color.fromRGBO(226, 174, 194, 0.611764705882353),
-            end: Color.fromRGBO(243, 10, 116, 1.0),
-            borderColor:
-            Color.fromRGBO(199, 66, 117, 0.611764705882353),
-            name: "sliver",
-            to: "sliver",
-          ),
-          ComponentRoute(
             begin: Color.fromRGBO(174, 181, 226, 0.611764705882353),
             end: Color.fromRGBO(10, 33, 243, 1.0),
             borderColor: Color.fromRGBO(4, 6, 186, 0.611764705882353),
@@ -131,6 +123,27 @@ class RouteButton extends StatelessWidget {
             name: "test",
             to: "test",
           ),
+          ComponentRoute(
+            begin: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 0.3568627450980392),
+            end: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 1.0),
+            borderColor: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256),Random().nextInt(256), 1.0),
+            name: "ios",
+            to: "ios",
+          ),
+          ComponentRoute(
+            begin: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 0.3568627450980392),
+            end: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 1.0),
+            borderColor: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256),Random().nextInt(256), 1.0),
+            name: "swiper",
+            to: "swiper",
+          ),
+          ComponentRoute(
+            begin: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 0.3568627450980392),
+            end: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 1.0),
+            borderColor: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256),Random().nextInt(256), 1.0),
+            name: "shared_preferences",
+            to: "shared_preferences",
+          ),
 
         ],
       ),
@@ -151,7 +164,8 @@ class ComponentRoute extends StatelessWidget {
   final Color begin;
   final Color end;
   final Color borderColor;
-  final String name, to;
+  final dynamic name;
+  final String to;
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +180,7 @@ class ComponentRoute extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             gradient: RadialGradient(
               //范围不够大时候的覆盖效果
-              // tileMode: TileMode.mirror,
+              tileMode: TileMode.mirror,
               ///中心的扩大范围
                 radius: 2,
                 colors: [
@@ -179,11 +193,12 @@ class ComponentRoute extends StatelessWidget {
             Navigator.pushNamed(context, "$to");
           },
           child: Center(
-              child: Text(
+              child: (name is String)?Text(
                 "$name",
                 style: TextStyle(
                     color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
-              )),
+              ):name
+          )
         ),
       ),
     );
