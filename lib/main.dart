@@ -36,6 +36,7 @@ import 'component/other/water_marker.dart';
 import 'component/other/will_pop_scope_demo.dart';
 import 'component/scroll/GridViewDemo.dart';
 import 'component/scroll/github_demo.dart';
+import 'component/scroll/infinity_scroll.dart';
 import 'component/scroll/list_view.dart';
 import 'component/scroll/single_child_scroll_view.dart';
 import 'component/scroll/sliver_demo.dart';
@@ -118,7 +119,7 @@ class MyApp extends StatelessWidget {
         "water-marker": (context) => WaterMarker(),
         "count-down-demo": (context) => CountDownDemo(),
         "will-pop-scope": (context) =>WillPopScopeDemo(),
-
+        "infinity_scroll":(context) =>InfinityScroll(),
       },
 
       /*///取消debug图标
